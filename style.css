@@ -1,0 +1,172 @@
+:root {
+    --accent: #00ffcc;
+    --bg: #0a0a0a;
+    --panel: #161616;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--bg);
+    color: #ddd;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Unified Header Controls */
+.top-bar {
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+    background: var(--panel);
+    border-bottom: 1px solid #333;
+    align-items: center;
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.control-item label {
+    font-size: 10px;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.main-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background: var(--panel);
+    padding: 20px;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.vfo-box {
+    background: #000;
+    border: 2px solid #333;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#vfo-val {
+    font-family: 'Courier New', monospace;
+    font-size: 32px;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Symbol Matrix */
+.symbol-grid {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 4px;
+    padding: 15px;
+    background: #000;
+    border-bottom: 1px solid #333;
+}
+
+.sym-box {
+    height: 25px;
+    background: #222;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #444;
+    border-radius: 2px;
+}
+
+.sym-box.active {
+    background: var(--accent);
+    color: #000;
+    font-weight: bold;
+    border-color: #fff;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.sym-box.done {
+    background: #004433;
+    color: #008866;
+}
+
+/* TX Info Overlay */
+.tx-info {
+    display: flex;
+    justify-content: space-around;
+    background: #111;
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    font-family: monospace;
+}
+
+.tx-info b {
+    color: var(--accent);
+}
+
+.log-area {
+    flex: 1;
+    padding: 15px;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    color: #00cc00;
+    overflow-y: auto;
+    background: #000;
+    white-space: pre-wrap;
+}
+
+input,
+select {
+    background: #000;
+    border: 1px solid #444;
+    color: var(--accent);
+    padding: 5px;
+    border-radius: 3px;
+}
+
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: 1px solid #444;
+    background: #333;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+button:hover {
+    background: #444;
+}
+
+.btn-start {
+    background: #0055ff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    padding: 15px;
+}
+
+.btn-start.active {
+    background: #cc3300;
+}
+
+#timer-display {
+    font-size: 20px;
+    color: #888; /* Changed from #ffcc00 to match OFFLINE state */
+    font-weight: bold;
+    text-align: center;
+}

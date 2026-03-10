@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-WSPR Receiver</title>
+    <link rel="stylesheet" href="receiver.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <section class="panel">
+                <h2>STATION</h2>
+                <div id="clock">00:00:00 UTC</div>
+                <div id="status-badge" class="badge">IDLE</div>
+                <div id="freq-display">00.0000</div>
+
+                <label>Band</label>
+                <select id="band-select"></select>
+
+                <label>Input</label>
+                <select id="input-mode">
+                    <option value="iq">I/Q (Stereo)</option>
+                    <option value="audio">Mono Audio</option>                    
+                </select>
+
+                <button id="power-btn">START RADIO</button>
+                <button id="cat-btn">CONNECT QMX+</button>
+            </section>
+
+
+            <section class="panel">
+                <h2>SDR SETTINGS</h2>
+
+                <div class="control-row">
+                    <label>WF Gain</label>
+                    <input type="range" id="wf-gain" min="1" max="200" value="60">
+                </div>
+
+                <div class="control-row">
+                    <label>WF Floor</label>
+                    <input type="range" id="wf-floor" min="0" max="100" value="50">
+                </div>
+
+                <div class="control-row">
+                    <label>Span</label>
+                    <select id="wf-span">
+                        <option value="48000">48 kHz (Full)</option>
+                        <option value="12000">12 kHz</option>
+                        <option value="3000" selected>3 kHz (WSPR)</option>
+                    </select>
+                </div>
+
+                <div class="control-row checkbox-row">
+                    <input type="checkbox" id="iq-swap">
+                    <label for="iq-swap">Swap I/Q Channels</label>
+                </div>
+            </section>
+
+
+
+            <section class="panel log-panel">
+                <h2>CONSOLE</h2>
+                <div id="console-out"></div>
+            </section>
+        </aside>
+
+        <main class="main-content">
+            <div class="waterfall-wrapper">
+                <canvas id="waterfall-canvas"></canvas>
+            </div>
+            <div class="results-wrapper">
+                <table id="decode-table">
+                    <thead>
+                        <tr>
+                            <th>UTC</th>
+                            <th>Freq (Hz)</th>
+                            <th>SNR</th>
+                            <th>Callsign</th>
+                            <th>Grid</th>
+                            <th>Power</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="receiver.js"></script>
+</body>
+
+</html>

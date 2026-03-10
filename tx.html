@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Professional QMX+ WSPR Beacon</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="control-item">
+            <label>Serial Interface</label>
+            <button id="btnSerial">Connect QMX+</button>
+        </div>
+        <div class="control-item">
+            <label>Audio Device</label>
+            <select id="audioOutput" style="width: 200px;">
+                <option>Searching...</option>
+            </select>
+        </div>
+        <div class="control-item" style="margin-left: auto;">
+            <label>System Time (UTC)</label>
+            <div id="clock" style="font-weight: bold; font-family: monospace;">00:00:00</div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="sidebar">
+            <div class="vfo-box">
+                <label>CURRENT FREQUENCY</label>
+                <div id="vfo-val">--.--- ---</div>
+            </div>
+
+            <div id="timer-display">OFFLINE</div>
+
+            <div class="control-item">
+                <label>Mode</label>
+                <label style="color:#aaa"><input type="checkbox" id="simMode"> Simulation (No RF)</label>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="control-item"><label>Callsign</label><input type="text" id="call" value="DJ1TF"></div>
+                <div class="control-item"><label>Grid</label><input type="text" id="grid" value="JN49"></div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="control-item"><label>dBm</label><input type="number" id="pow" value="33"></div>
+                <div class="control-item"><label>Offset Hz</label><input type="number" id="offset" value="0"></div>
+            </div>
+
+            <div class="control-item">
+                <label>Standard WSPR Band (Dial)</label>
+                <select id="band">
+                    <option value="1.8366">160m (1.836600 MHz)</option>
+                    <option value="3.5686" selected>80m (3.568600 MHz)</option>
+                    <option value="5.2872">60m (5.287200 MHz)</option>
+                    <option value="7.0386">40m (7.038600 MHz)</option>
+                    <option value="10.1387">30m (10.138700 MHz)</option>
+                    <option value="14.0956">20m (14.095600 MHz)</option>
+                    <option value="18.1046">17m (18.104600 MHz)</option>
+                    <option value="21.0946">15m (21.094600 MHz)</option>
+                    <option value="24.9246">12m (24.924600 MHz)</option>
+                    <option value="28.1246">10m (28.124600 MHz)</option>
+                    <option value="50.2930">6m (50.293000 MHz)</option>
+                </select>
+            </div>
+
+            <div class="control-item">
+                <label>TX Interval (Minutes)</label>
+                <input type="number" id="interval" value="10" min="2" step="2">
+            </div>
+
+            <button class="btn-start" id="btnMain">START BEACON</button>
+        </div>
+
+        <div style="display: flex; flex-direction: column; overflow: hidden;">
+            <div class="tx-info">
+                <div>CENTER: <b id="info-center">----</b> Hz</div>
+                <div>SYMBOL: <b id="info-sym">#--</b></div>
+                <div>DELTA: <b id="info-delta">--</b> Hz</div>
+                <div>TX FREQ: <b id="info-full">----</b> Hz</div>
+            </div>
+            <div class="symbol-grid" id="symGrid"></div>
+            <div class="log-area" id="log">SYSTEM INITIALIZED. READY FOR CONNECTION.</div>
+        </div>
+    </div>
+    <script type="module">
+        import { WSPRBeacon } from './tx.js'
+        // Initialize the beacon logic
+        const beacon = new WSPRBeacon()
+    </script>
+</body>
+
+</html>
